@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY ART LENS - 전시 관람 미니 가이드</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #faf8f5; }
+        .card-active { transform: translateY(-4px); box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="p-4 md:p-8 max-w-md mx-auto min-h-screen flex flex-col justify-between">
+
+    <header class="text-center my-4">
+        <h1 class="text-2xl font-bold text-slate-800 tracking-tight">🔎 MY ART LENS</h1>
+        <p class="text-xs text-slate-500 mt-1">오늘 전시를 바라볼 나만의 렌즈를 선택하세요!</p>
+    </header>
+
+    <div class="flex bg-slate-200/60 p-1 rounded-xl mb-6">
+        <button id="tab-classic" onclick="switchTab('classic')" class="flex-1 py-2.5 text-sm font-medium rounded-lg transition-all bg-white text-slate-800 shadow-sm">
+            🏛️ 고전·전통 예술
+        </button>
+        <button id="tab-modern" onclick="switchTab('modern')" class="flex-1 py-2.5 text-sm font-medium rounded-lg transition-all text-slate-600 hover:text-slate-800">
+            🎨 현대·일러스트
+        </button>
+    </div>
+
+    <main id="card-container" class="space-y-4 flex-grow">
+        </main>
+
+    <footer class="mt-8 text-center pb-4">
+        <div id="selection-alert" class="hidden bg-slate-800 text-white text-xs py-3 px-4 rounded-xl shadow-lg transition-all animate-bounce">
+            🔒 <span id="selected-lens-name"></span> 렌즈를 장착했습니다! 관람을 시작하세요.
+        </div>
+        <p class="text-[10px] text-slate-400 mt-4">© 2026 문화예술 정모 크루. All 라이브러리 프리.</p>
+    </footer>
+
+    <script>
+        const dataset = {
+            classic: [
+                { id: 'CA', title: '[인생 추적] 화가의 비밀 방', border: 'border-rose-400', tagBg: 'bg-rose-50 text-rose-600', desc: '거장의 파란만장한 삶과 거친 붓질 속에 숨겨진 진짜 인간적인 감정(고독, 열정, 광기)을 추적합니다.', q1: '노화가 혹은 청년 시절의 화가가 가장 ‘흑화’했거나 속마음을 고백한 듯한 작품은?', q2: '그림 속 빛과 어둠, 거친 질감 중 내 눈길을 가장 오랫동안 붙잡아둔 디테일은?', m: '시대의 한계를 부수고 화가가 남긴 흔적 중 가장 강렬했던 작품 3가지와 그 이유는?' },
+                { id: 'CB', title: '[상징 분석] 숨은 의미 보물찾기', border: 'border-cyan-500', tagBg: 'bg-cyan-50 text-cyan-600', desc: '그림 속 사물(오브제)이나 인물의 배치를 통해 당시 사회상이나 화가가 숨겨놓은 알레고리를 해독합니다.', q1: '제목이나 해설을 읽고 나서야 "아하!" 하고 무릎을 치게 만든 반전의 상징물은?', q2: '만약 내가 당시의 권력자(왕, 문인)였다면 이 그림을 보고 만족했을지, 분노했을지?', m: '당대 최고의 역사적 정황이나 은밀한 메시지가 가득했던 작품 3가지와 그 이유는?' },
+                { id: 'CC', title: '[구조 파괴] 규칙을 부수는 혁명가', border: 'border-emerald-500', tagBg: 'bg-emerald-50 text-emerald-600', desc: '사물의 본래 색이나 원근법을 거부하고, 시각적 해방과 입체적 실험을 시도한 파격적 지점을 포착합니다.', q1: '전통적인 미의 기준을 과감히 깨부순 가장 파격적이고 난해한 조형물(그림)은?', q2: '선과 색이 따로 노는 듯하면서도 묘하게 화면 전체에 생동감을 주는 구간은?', m: '작가의 천재적인 규칙 파괴력이 돋보인 원픽 작품 3가지와 그 이유는?' },
+                { id: 'CD', title: '[정신 정화] 안락의자 같은 휴식', border: 'border-purple-500', tagBg: 'bg-purple-50 text-purple-600', desc: '머리 아픈 분석은 내려놓고, 대화와 캔버스가 뿜어내는 색채 리듬 속에서 온전한 치유와 조화를 느낍니다.', q1: '보는 순간 머릿속 잡념을 지워주고 마음에 깊은 평온함을 준 정적인 공간(작품)은?', q2: '그림을 가만히 응시하는 동안 묘하게 특정 소리나 계절의 대기가 느껴진 컷은?', m: '의미를 떠나 그저 오랫동안 멍하니 바라보고 싶었던 힐링 작품 3가지와 그 이유는?' }
+            ],
+            modern: [
+                { id: 'MA', title: '[취향 저격] 내 방에 걸고 싶은 그림', border: 'border-rose-400', tagBg: 'bg-rose-50 text-rose-600', desc: '복잡한 세계관은 빼고, 오직 내 눈과 트렌디한 감각에 가장 예뻐 보이고 끌리는 비주얼을 수집합니다.', q1: '보자마자 "색감 미쳤다!" 소리가 나와 인스타 스토리에 공유하고 싶어진 컷은?', q2: '이 작가가 유명 브랜드와 콜라보 굿즈를 만든다면 어떤 브랜드와 찰떡일 것 같나요?', m: '내 홈 인테리어로 당장 훔쳐 오고 싶었던 원픽 작품 3가지와 그 이유는?' },
+                { id: 'MB', title: '[도파민 충전] 활기찬 긍정 바이브', border: 'border-cyan-500', tagBg: 'bg-cyan-50 text-cyan-600', desc: '스포츠의 역동성, 럭키한 에너지, 통통 튀는 위트 코드를 찾아 지친 일상에 엔도르핀을 채웁니다.', q1: '보고 있으면 나도 모르게 피식 웃음이 터지거나 운동 욕구를 자극하는 액티브한 구간은?', q2: '전시장 통틀어 나에게 하반기 대박 행운을 가져다줄 것 같은 "부적" 같은 장면은?', m: '나에게 가장 확실하게 긍정 에너지를 수혈해 준 작품 3가지와 그 이유는?' },
+                { id: 'MC', title: '[친근 공감] 이거 완전 내 얘기인데?', border: 'border-emerald-500', tagBg: 'bg-emerald-50 text-emerald-600', desc: '일러스트 속 인물의 행동이나 은은한 광기, 소소한 묘사 속에서 최근 나의 상태를 대입해 봅니다.', q1: '"앗, 일하는(혹은 쉬는) 내 모습 도촬 당했나?" 격하게 고개를 끄덕이게 한 캐릭터는?', q2: '바쁘게 달리던 나에게 잠시 멈춰 서서 부드러운 위로나 숨 고르기를 선물해 준 장면은?', m: '유독 감정이 요동치며 소소한 일상 공감을 유도한 작품 3가지와 그 이유는?' },
+                { id: 'MD', title: '[위트 추적] 귀여운 뼈 때리기', border: 'border-purple-500', tagBg: 'bg-purple-50 text-purple-600', desc: '무해한 비주얼 뒤에 현대 사회의 모순이나 도파민 중독을 씁쓸하게 풍자하는 디테일을 사냥합니다.', q1: '첫인상은 귀여웠는데 작품 제목이나 구석의 낙서를 보고 뒷목을 잡은 반전 요소는?', q2: '작가가 일러스트 속에 숨겨둔 킹받지만 반박 불가한 현대인 풍자 포인트는?', m: '작가의 남다른 드립력과 영리한 센스에 완전히 감탄한 작품 3가지와 그 이유는?' }
+            ]
+        };
+
+        let currentTab = 'classic';
+
+        function renderCards() {
+            const container = document.getElementById('card-container');
+            container.innerHTML = '';
+            
+            dataset[currentTab].forEach(card => {
+                const cardEl = document.createElement('div');
+                cardEl.className = `bg-white p-5 rounded-2xl border-t-8 ${card.border} border border-slate-200 cursor-pointer transition-all duration-300 hover:shadow-md`;
+                cardEl.onclick = () => selectCard(cardEl, card.title);
+                
+                cardEl.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-base font-bold text-slate-800">${card.title}</h3>
+                    </div>
+                    <p class="text-xs text-slate-500 leading-relaxed bg-slate-50 p-2.5 rounded-lg border-l-2 mb-4">${card.desc}</p>
+                    <ul class="text-xs text-slate-700 space-y-2 pl-4 list-disc">
+                        <li>${card.q1}</li>
+                        <li>${card.q2}</li>
+                        <li class="text-slate-900 font-semibold pt-1">🔥 미션: ${card.m}</li>
+                    </ul>
+                `;
+                container.appendChild(cardEl);
+            });
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            const btnClassic = document.getElementById('tab-classic');
+            const btnModern = document.getElementById('tab-modern');
+            
+            if(tab === 'classic') {
+                btnClassic.className = "flex-1 py-2.5 text-sm font-medium rounded-lg transition-all bg-white text-slate-800 shadow-sm";
+                btnModern.className = "flex-1 py-2.5 text-sm font-medium rounded-lg transition-all text-slate-600 hover:text-slate-800";
+            } else {
+                btnModern.className = "flex-1 py-2.5 text-sm font-medium rounded-lg transition-all bg-white text-slate-800 shadow-sm";
+                btnClassic.className = "flex-1 py-2.5 text-sm font-medium rounded-lg transition-all text-slate-600 hover:text-slate-800";
+            }
+            
+            // 탭 전환 시 알림 초기화
+            document.getElementById('selection-alert').classList.add('hidden');
+            renderCards();
+        }
+
+        function selectCard(element, title) {
+            // 모든 카드의 활성화 스타일 제거
+            const cards = document.getElementById('card-container').children;
+            for(let card of cards) {
+                card.classList.remove('card-active', 'bg-slate-50/50', 'border-slate-300');
+            }
+            
+            // 선택한 카드 스타일 강조
+            element.classList.add('card-active', 'bg-slate-50/50');
+            
+            // 하단 토스트 팝업 띄우기
+            const alertBox = document.getElementById('selection-alert');
+            document.getElementById('selected-lens-name').innerText = title.split(']')[1] || title;
+            alertBox.classList.remove('hidden');
+        }
+
+        // 초기 화면 렌더링
+        renderCards();
+    </script>
+</body>
+</html>
