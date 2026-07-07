@@ -7,87 +7,101 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Noto Sans KR', sans-serif; background-color: #faf8f5; }
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #faf8f5; -webkit-tap-highlight-color: transparent; }
         .fade-in { animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="p-4 md:p-8 max-w-md mx-auto min-h-screen flex flex-col justify-between select-none">
+<body class="p-4 md:p-8 max-w-md mx-auto min-h-screen flex flex-col justify-between select-none text-slate-800">
 
-    <!-- [STEP 1] 목적 선택 화면 -->
+    <!-- [STEP 1] 9가지 목적 선택 화면 -->
     <div id="step-question" class="fade-in flex flex-col justify-center my-auto">
         <header class="text-center mb-8">
-            <h1 class="text-2xl font-bold text-slate-800 tracking-tight">🔎 MY ART LENS</h1>
-            <p class="text-sm text-slate-500 mt-2 font-medium">오늘 전시, 어떤 목적으로 관람하시나요?</p>
-            <p class="text-xs text-slate-400 mt-1">목적을 선택하시면 나만의 관람 렌즈(질문지)가 열립니다.</p>
+            <h1 class="text-xl font-bold tracking-widest text-slate-900">🔎 MY ART LENS</h1>
+            <p class="text-sm text-slate-600 mt-3 font-medium">오늘 전시를 바라볼 나만의 시선을 선택해 주세요.</p>
+            <p class="text-xs text-slate-400 mt-1">지식 없이 오직 직관과 감각으로 서로의 기억을 여는 질문지입니다.</p>
         </header>
 
         <div class="space-y-6">
-            <!-- 고전 회화 그룹 -->
+            <!-- 그룹 1: 클래식 & 아날로그 감성 -->
             <div>
-                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5 pl-1">🏛️ 고전·전통 회화 위주 전시</h2>
+                <h2 class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2.5 pl-1">🏛️ 클래식 & 회화 중심 전시</h2>
                 <div class="space-y-2">
-                    <button onclick="showCard('CA')" class="w-full text-left p-3.5 bg-white border border-slate-200 hover:border-rose-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.98]">
-                        <span class="text-xl mr-3">👤</span>
+                    <button onclick="showCard('C1')" class="w-full text-left p-4 bg-white border border-slate-200/80 hover:border-slate-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.99]">
+                        <span class="text-lg mr-3.5">🎨</span>
                         <div>
-                            <div class="text-sm font-bold text-slate-800">화가의 내면과 인생 추적</div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">거장의 파란만장한 삶과 숨겨진 고독·열정 읽기</div>
+                            <div class="text-sm font-bold text-slate-800">화폭이 건네는 감정의 온도</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">그림 전체가 뿜어내는 정서와 무드에 몰입하기</div>
                         </div>
                     </button>
-                    <button onclick="showCard('CB')" class="w-full text-left p-3.5 bg-white border border-slate-200 hover:border-cyan-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.98]">
-                        <span class="text-xl mr-3">🗺️</span>
+                    <button onclick="showCard('C2')" class="w-full text-left p-4 bg-white border border-slate-200/80 hover:border-slate-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.99]">
+                        <span class="text-lg mr-3.5">👣</span>
                         <div>
-                            <div class="text-sm font-bold text-slate-800">숨은 상징과 배경 보물찾기</div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">그림 속 오브제와 역사적 비하인드 해독하기</div>
+                            <div class="text-sm font-bold text-slate-800">발길이 머무는 시선의 흔적</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">이유 없이 내 눈길을 사로잡은 작품 들여다보기</div>
                         </div>
                     </button>
-                    <button onclick="showCard('CC')" class="w-full text-left p-3.5 bg-white border border-slate-200 hover:border-emerald-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.98]">
-                        <span class="text-xl mr-3">⚡</span>
+                    <button onclick="showCard('C3')" class="w-full text-left p-4 bg-white border border-slate-200/80 hover:border-slate-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.99]">
+                        <span class="text-lg mr-3.5">💭</span>
                         <div>
-                            <div class="text-sm font-bold text-slate-800">틀을 깨부순 구조와 파격</div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">원근법과 고정관념을 거부한 혁명적 시선 포착</div>
-                        </div>
-                    </button>
-                    <button onclick="showCard('CD')" class="w-full text-left p-3.5 bg-white border border-slate-200 hover:border-purple-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.98]">
-                        <span class="text-xl mr-3">🛋️</span>
-                        <div>
-                            <div class="text-sm font-bold text-slate-800">온전한 시각적 치유와 휴식</div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">분석 없이 색채 리듬 속에서 멍하니 힐링하기</div>
+                            <div class="text-sm font-bold text-slate-800">그림 속 세상과 소소한 상상</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">화폭 속 인물의 생각이나 그날의 공기 상상하기</div>
                         </div>
                     </button>
                 </div>
             </div>
 
-            <!-- 현대 일러스트 그룹 -->
+            <!-- 그룹 2: 모던 & 현대 미술 공간 -->
             <div>
-                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2.5 pl-1">🎨 현대·일러스트·팝아트 전시</h2>
+                <h2 class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2.5 pl-1">✨ 모던 & 현대 미술 공간</h2>
                 <div class="space-y-2">
-                    <button onclick="showCard('MA')" class="w-full text-left p-3.5 bg-white border border-slate-200 hover:border-rose-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.98]">
-                        <span class="text-xl mr-3">🖼️</span>
+                    <button onclick="showCard('C4')" class="w-full text-left p-4 bg-white border border-slate-200/80 hover:border-slate-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.99]">
+                        <span class="text-lg mr-3.5">💡</span>
                         <div>
-                            <div class="text-sm font-bold text-slate-800">내 방에 소장하고 싶은 취향 저격</div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">트렌디한 색감과 힙한 비주얼 위주로 감상하기</div>
+                            <div class="text-sm font-bold text-slate-800">낯설고 오묘한 매력의 발견</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">처음엔 생소했지만 볼수록 이끌리는 작품 찾기</div>
                         </div>
                     </button>
-                    <button onclick="showCard('MB')" class="w-full text-left p-3.5 bg-white border border-slate-200 hover:border-cyan-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.98]">
-                        <span class="text-xl mr-3">🔋</span>
+                    <button onclick="showCard('C5')" class="w-full text-left p-4 bg-white border border-slate-200/80 hover:border-slate-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.99]">
+                        <span class="text-lg mr-3.5">📝</span>
                         <div>
-                            <div class="text-sm font-bold text-slate-800">도파민과 긍정 바이브 충전</div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">스포츠의 역동성과 행운의 에너지 가득 받기</div>
+                            <div class="text-sm font-bold text-slate-800">제목이 선물하는 여운과 반전</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">이름을 확인하고 감상이 완전히 달라지는 순간</div>
                         </div>
                     </button>
-                    <button onclick="showCard('MC')" class="w-full text-left p-3.5 bg-white border border-slate-200 hover:border-emerald-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.98]">
-                        <span class="text-xl mr-3">🫂</span>
+                    <button onclick="showCard('C6')" class="w-full text-left p-4 bg-white border border-slate-200/80 hover:border-slate-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.99]">
+                        <span class="text-lg mr-3.5">🌬️</span>
                         <div>
-                            <div class="text-sm font-bold text-slate-800">일상 속 격한 친근 공감</div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">그림 속 인물이나 상황에서 나의 모습 발견하기</div>
+                            <div class="text-sm font-bold text-slate-800">전시장의 분위기와 오감 체험</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">조명, 음악, 연출이 내 마음에 일으키는 변화</div>
                         </div>
                     </button>
-                    <button onclick="showCard('MD')" class="w-full text-left p-3.5 bg-white border border-slate-200 hover:border-purple-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.98]">
-                        <span class="text-xl mr-3">🃏</span>
+                </div>
+            </div>
+
+            <!-- 그룹 3: 디자인 & 그래픽 일러스트 -->
+            <div>
+                <h2 class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2.5 pl-1">🎨 디자인 & 그래픽 일러스트</h2>
+                <div class="space-y-2">
+                    <button onclick="showCard('C7')" class="w-full text-left p-4 bg-white border border-slate-200/80 hover:border-slate-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.99]">
+                        <span class="text-lg mr-3.5">🧁</span>
                         <div>
-                            <div class="text-sm font-bold text-slate-800">귀여운 반전 위트와 뼈 때리기</div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">무해한 비주얼 뒤에 숨은 영리한 풍자 사냥하기</div>
+                            <div class="text-sm font-bold text-slate-800">내 감각을 깨우는 순수한 미감</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">직관적으로 예쁘고 아름다운 색채 매치 즐기기</div>
+                        </div>
+                    </button>
+                    <button onclick="showCard('C8')" class="w-full text-left p-4 bg-white border border-slate-200/80 hover:border-slate-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.99]">
+                        <span class="text-lg mr-3.5">🫂</span>
+                        <div>
+                            <div class="text-sm font-bold text-slate-800">소소한 풍경 속 정서적 공감</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">작품 속 인물의 몸짓에서 최근 내 모습 발견하기</div>
+                        </div>
+                    </button>
+                    <button onclick="showCard('C9')" class="w-full text-left p-4 bg-white border border-slate-200/80 hover:border-slate-300 rounded-xl shadow-sm flex items-center transition-all active:scale-[0.99]">
+                        <span class="text-lg mr-3.5">🎬</span>
+                        <div>
+                            <div class="text-sm font-bold text-slate-800">한 컷 이면의 서사와 이야기</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">멈춰있는 그림의 앞뒤 상황을 자유롭게 상상하기</div>
                         </div>
                     </button>
                 </div>
@@ -95,36 +109,89 @@
         </div>
     </div>
 
-    <!-- [STEP 2] 단일 미션 카드 화면 -->
+    <!-- [STEP 2] 단일 가이드 화면 -->
     <div id="step-card" class="fade-in hidden flex-col justify-between flex-grow my-auto">
         <div id="card-content" class="w-full">
-            <!-- 자바스크립트로 선택한 카드가 여기에 렌더링됩니다 -->
+            <!-- 자바스크립트로 선택한 카드가 여기에 동적 반영됩니다 -->
         </div>
 
-        <!-- 다시 선택하기 하단 고정 버튼 -->
-        <button onclick="resetApp()" class="w-full mt-8 py-3.5 bg-slate-800 text-white font-medium text-sm rounded-xl shadow-md hover:bg-slate-900 transition-all active:scale-[0.99]">
-            🔄 다른 목적으로 다시 선택하기
+        <!-- 하단 리셋 버튼 -->
+        <button onclick="resetApp()" class="w-full mt-6 py-3.5 bg-slate-800 text-white font-medium text-xs rounded-xl shadow-sm hover:bg-slate-900 transition-all active:scale-[0.99] tracking-wider">
+            다시 선택하기
         </button>
     </div>
 
     <!-- 푸터 -->
     <footer class="text-center pt-8 pb-2">
-        <p class="text-[10px] text-slate-400 tracking-wider">© 2026 ART LENS CREW. ALL RIGHTS FREE.</p>
+        <p class="text-[10px] text-slate-400 tracking-widest font-light">© 2026 ART LENS CREW. ALL RIGHTS FREE.</p>
     </footer>
 
     <script>
-        // 전시장 카드 데이터 마스터셋
+        // 사전 지식을 완전히 배제한 현장 직관용 9가지 시선 데이터셋
         const cardsData = {
-            // 고전
-            CA: { title: '👤 [인생 추적] 화가의 비밀 방', border: 'border-rose-400', bg: 'bg-rose-50/50', desc: '거장의 파란만장한 삶과 거친 붓질 속에 숨겨진 진짜 인간적인 감정(고독, 열정, 광기)을 추적합니다.', q1: '노화가 혹은 청년 시절의 화가가 가장 ‘흑화’했거나 속마음을 고백한 듯한 작품은 무엇인가요?', q2: '그림 속 빛과 어둠, 거친 질감 중 내 눈길을 가장 오랫동안 붙잡아둔 디테일은 어디였나요?', m: '시대의 한계를 부수고 화가가 남긴 흔적 중 가장 강렬했던 작품 3가지와 그 이유는 무엇인가요?' },
-            CB: { title: '🗺️ [상징 분석] 숨은 의미 보물찾기', border: 'border-cyan-500', bg: 'bg-cyan-50/50', desc: '그림 속 사물(오브제)이나 인물의 배치를 통해 당시 사회상이나 화가가 숨겨놓은 알레고리를 해독합니다.', q1: '제목이나 해설을 읽고 나서야 "아하!" 하고 무릎을 치게 만든 반전의 상징물은 무엇이었나요?', q2: '만약 내가 당시의 권력자(왕, 문인)였다면 이 그림을 보고 만족했을지, 아니면 분노했을지 상상해 보세요.', m: '당대 최고의 역사적 정황이나 은밀한 메시지가 가득했던 작품 3가지와 그 이유는 무엇인가요?' },
-            CC: { title: '⚡ [구조 파괴] 규칙을 부수는 혁명가', border: 'border-emerald-500', bg: 'bg-emerald-50/50', desc: '사물의 원래 색이나 전통 원근법을 거부하고, 시각적 해방과 입체적 실험을 시도한 파격적 지점을 포착합니다.', q1: '전통적인 미의 기준을 과감히 깨부순 가장 파격적이고 난해한 조형물(그림)은 무엇인가요?', q2: '선과 색이 따로 노는 듯하면서도 묘하게 화면 전체에 생동감을 주는 구간을 발견하셨나요?', m: '작가의 천재적인 규칙 파괴력이 돋보인 원픽 작품 3가지와 그 이유는 무엇인가요?' },
-            CD: { title: '🛋️ [정신 정화] 안락의자 같은 휴식', border: 'border-purple-500', bg: 'bg-purple-50/50', desc: '머리 아픈 분석은 내려놓고, 대화와 캔버스가 뿜어내는 색채 리듬 속에서 온전한 치유와 조화를 느낍니다.', q1: '보는 순간 머릿속 잡념을 지워주고 마음에 깊은 평온함을 준 정적인 공간(작품)은 어디였나요?', q2: '그림을 가만히 응시하는 동안 묘하게 특정 소리나 계절의 대기가 느껴진 구간이 있었나요?', m: '의미를 떠나 그저 오랫동안 멍하니 바라보고 싶었던 힐링 작품 3가지와 그 이유는 무엇인가요?' },
-            // 현대
-            MA: { title: '🖼️ [취향 저격] 내 방에 걸고 싶은 그림', border: 'border-rose-400', bg: 'bg-rose-50/50', desc: '복잡한 세계관은 빼고, 오직 내 눈과 트렌디한 감각에 가장 예뻐 보이고 끌리는 비주얼을 수집합니다.', q1: '보자마자 "색감 미쳤다!" 소리가 나와 인스타 스토리에 공유하고 싶어진 컷은 무엇인가요?', q2: '이 작가가 유명 브랜드와 콜라보 굿즈를 만든다면 어떤 브랜드와 가장 찰떡일 것 같나요?', m: '내 홈 인테리어로 당장 포스터나 엽서로 소장하고 싶었던 작품 3가지와 그 이유는 무엇인가요?' },
-            MB: { title: '🔋 [도파민 충전] 활기찬 긍정 바이브', border: 'border-cyan-500', bg: 'bg-cyan-50/50', desc: '스포츠의 역동성, 럭키한 에너지, 통통 튀는 위트 코드를 찾아 지친 일상에 엔도르핀을 가득 채웁니다.', q1: '보고 있으면 나도 모르게 피식 웃음이 터지거나 운동 욕구를 자극하는 액티브한 구간은 어디인가요?', q2: '전시장 통틀어 나에게 하반기 대박 행운을 가져다줄 것 같은 "나만의 행운 부적" 같은 장면은?', m: '나에게 가장 확실하게 밝고 유쾌한 에너지를 수혈해 준 작품 3가지와 그 이유는 무엇인가요?' },
-            MC: { title: '🫂 [친근 공감] 이거 완전 내 얘기인데?', border: 'border-emerald-500', bg: 'bg-emerald-50/50', desc: '일러스트 속 인물의 행동이나 은은한 광기, 소소한 묘사 속에서 최근 나의 상태나 일상을 대입해 봅니다.', q1: '"앗, 이거 일하는(혹은 쉬는) 내 모습 도촬 당했나?" 격하게 고개를 끄덕이게 한 캐릭터가 있나요?', q2: '정신없이 바쁘게 달리던 나에게 잠시 멈춰 서서 부드러운 위로나 힐링을 선물해 준 장면은?', m: '유독 감정이 요동치며 소소한 일상 공감을 유도한 작품 3가지와 그 이유는 무엇인가요?' },
-            MD: { title: '🃏 [위트 추적] 귀여운 뼈 때리기', border: 'border-purple-500', bg: 'bg-purple-50/50', desc: '무해한 비주얼 뒤에 현대 사회의 부조리나 모순, 도파민 중독을 씁쓸하게 풍자하는 디테일을 사냥합니다.', q1: '첫인상은 귀여웠는데 작품 제목이나 구석의 낙서를 보고 뒷목을 잡은 반전 요소가 있나요?', q2: '작가가 일러스트 속에 숨겨둔 킹받지만 반박 불가한 현대인 풍자 포인트는 무엇인가요?', m: '작가의 남다른 드립력과 영리한 유머 센스에 완전히 감탄한 작품 3가지와 그 이유는 무엇인가요?' }
+            C1: { 
+                title: '🎨 [감정의 온도] 화폭이 건네는 첫인상', border: 'border-amber-500', bg: 'bg-amber-50/40', 
+                desc: '이 구역의 작품들을 가만히 바라봅니다. 특별한 지식 없이도 화면 전체가 나에게 건네는 지극히 주관적인 감정에 집중해 보세요.', 
+                q1: '작품들 앞에 섰을 때 내 마음에 가장 먼저 스친 기분은 무엇인가요? (평온함, 고독함, 은은한 온기 등)', 
+                q2: '전시장 내에서 유독 서글퍼 보이거나, 혹은 유독 다정하고 따뜻하게 느껴지는 색채를 품은 그림은 무엇이었나요?', 
+                q3: '가장 강렬한 인상을 남기거나 묘한 울림을 주었던 작품 3가지를 편안하게 마음속에 담아보세요.' 
+            },
+            C2: { 
+                title: '👣 [시선의 흔적] 발길이 머무는 공간', border: 'border-slate-500', bg: 'bg-slate-50/50', 
+                desc: '뚜렷한 이유는 모르겠지만, 유독 내 눈길을 사로잡고 발걸음을 멈추게 만드는 캔버스 앞에 조용히 머물러 봅니다.', 
+                q1: '전체 공간 중에서 내 시선이 가장 오랫동안 머물렀던 스팟이나 특정 그림은 무엇인가요?', 
+                q2: '그 작품을 멀리서 전체적으로 바라볼 때와, 아주 가까이 다가가 세부적인 선을 들여다볼 때의 기분은 어떻게 달랐나요?', 
+                q3: '관람을 마친 후 카페에서 모임원들과 가장 먼저 대화의 소재로 올리고 싶은 흥미로운 작품 3가지는 무엇인가요?' 
+            },
+            C3: { 
+                title: '💭 [상상의 문] 그림 속 세상과 소소한 대화', border: 'border-orange-400', bg: 'bg-orange-50/40', 
+                desc: '화폭 속에 그려진 인물이나 풍경 속으로 걸어 들어가 봅니다. 멈춰있는 프레임 너머의 살아있는 세계를 자유롭게 상상합니다.', 
+                q1: '그림 속에 등장하는 인물은 지금 어떤 눈빛을 하고 있으며, 속으로 어떤 생각을 하고 있을지 짐작해 본다면?', 
+                q2: '이 그림을 그린 화가가 붓을 들었던 그날, 전시장 밖의 날씨나 작가의 기분은 어땠을지 그림을 힌트 삼아 상상해 보세요.', 
+                q3: '마치 내가 그림 속 풍경의 한가운데 서 있는 듯한 착각을 불러일으킨 생생한 작품 3가지는 무엇이었나요?' 
+            },
+            C4: { 
+                title: '💡 [낯선 매력] 볼수록 오묘한 이끌림', border: 'border-teal-500', bg: 'bg-teal-50/40', 
+                desc: '처음 마주했을 때는 다소 생소하거나 난해하게 느껴졌지만, 가만히 응시할수록 묘하게 마음을 끄는 매력을 포착합니다.', 
+                q1: '첫눈에는 무엇을 표현한지 알기 어려웠지만, 한참을 바라보니 나만의 방식으로 해석되기 시작한 작품이 있나요?', 
+                q2: '만약 내가 이 난해하고 독특한 그림에 내 감정을 담아 완전히 새로운 이름(제목)을 붙여준다면 무엇이 어울릴까요?', 
+                q3: '처음의 어색함을 넘어 볼수록 묘한 중독성과 매력을 선사해 준 개성 넘치는 작품 3가지를 꼽아보세요.' 
+            },
+            C5: { 
+                title: '📝 [제목의 여운] 이름이 선물하는 반전', border: 'border-indigo-500', bg: 'bg-indigo-50/40', 
+                desc: '그림 자체의 이미지와 액자 옆에 조용히 붙어있는 ‘작품의 제목’이 만나는 순간 일어나는 신선한 화학반응을 즐깁니다.', 
+                q1: '시각적인 그림만 보았을 때의 상상과, 벽면의 제목을 확인하고 난 후의 느낌이 완전히 달라졌던 반전 작품은 무엇인가요?', 
+                q2: '작가가 지은 엉뚱하거나 깊이 있는 제목 덕분에 피식 웃음이 나거나 깊은 탄식이 흘러나왔던 구간이 있었나요?', 
+                q3: '그림과 제목의 절묘한 어우러짐이 유독 영리하게 다가왔던 인상적인 작품 3가지는 무엇이었나요?' 
+            },
+            C6: { 
+                title: '🌬️ [오감의 기억] 전시장의 공기와 무드', border: 'border-blue-500', bg: 'bg-blue-50/40', 
+                desc: '벽면의 캔버스를 넘어 전시장을 채우는 은은한 조명, 배경 음악, 그리고 공간의 연출이 내 오감을 어떻게 흔드는지 느껴봅니다.', 
+                q1: '전시장의 인테리어나 어두운 조명의 톤이 특정 작품의 쓸쓸하거나 화려한 분위기를 어떻게 돋우어 주었나요?', 
+                q2: '어떤 작품 앞에 가만히 서 있을 때, 눈으로 보면서도 묘하게 어울리는 계절의 냄새나 소리가 연상되는 기분이 들었나요?', 
+                q3: '작품 자체뿐만 아니라 공간의 연출 덕분에 시각적인 힐링과 깊은 몰입을 경험하게 해준 구역 3곳을 찾아보세요.' 
+            },
+            C7: { 
+                title: '🧁 [시각 몰입] 내 감각을 깨우는 순수한 미감', border: 'border-rose-400', bg: 'bg-rose-50/40', 
+                desc: '복잡한 의미나 메시지는 잠시 지워두고, 오직 감각적인 색채의 조합과 선의 리듬이 주는 순수한 조형미에 침잠해 봅니다.', 
+                q1: '오직 나의 주관적인 취향에 비추어 보았을 때, 색 매치가 너무 아름다워서 눈이 맑아지는 기분이 들었던 그림은 무엇인가요?', 
+                q2: '이 감각적인 작품을 작은 엽서나 소품으로 소장할 수 있다면, 내 방 어느 공간에 두고 매일 바라보고 싶으신가요?', 
+                q3: '그저 바라보는 것만으로도 시각적인 즐거움과 청량함을 선사해 준 나만의 취향 저격 작품 3가지를 모아보세요.' 
+            },
+            C8: { 
+                title: '🫂 [정서 공감] 일상의 포착과 다정한 위로', border: 'border-emerald-600', bg: 'bg-emerald-50/40', 
+                desc: '그림 속 인물의 표정이나 몸짓, 혹은 다정하게 묘사된 풍경 속에서 최근 나의 상태나 소소한 일상을 거울처럼 대입해 봅니다.', 
+                q1: '그림 속 인물이 처한 상황이나 몸짓에서 "앗, 요즘 내 모습 같다"며 깊은 동질감과 정서적 공감이 간 장면은 무엇인가요?', 
+                q2: '치열하게 달리느라 지쳐있던 나에게, 아무 생각 없이 응시하는 것만으로도 부드러운 위안을 안겨준 컷은 어디였나요?', 
+                q3: '유독 내 일상의 기억을 건드리며 따뜻하고 몽글몽글한 여운을 전해준 고마운 작품 3가지를 마음에 담아보세요.' 
+            },
+            C9: { 
+                title: '🎬 [서사 상상] 한 컷 이면의 서사와 이야기', border: 'border-purple-500', bg: 'bg-purple-50/40', 
+                desc: '멈춰있는 단 한 장의 그림이지만, 마치 영화의 스틸컷처럼 이 장면의 앞과 뒤로 어떤 일들이 펼쳐질지 자유롭게 서사를 상상합니다.', 
+                q1: '"이 그림이 그려지기 5분 전에는 어떤 소소한 사건이 있었을까?" 하는 호기심과 상상력을 돋우는 작품은 무엇인가요?', 
+                q2: '그림 구석구석을 잘 들여다보았을 때 발견할 수 있는 위트 있는 낙서나 숨겨진 재미있는 요소가 있었나요?', 
+                q3: '한 편의 소설이나 잔잔한 단편 영화를 감상한 듯한 상상력을 자극해 준 매력적인 작품 3가지는 무엇이었나요?' 
+            }
         };
 
         function showCard(id) {
@@ -134,34 +201,33 @@
             content.innerHTML = `
                 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                     <div class="p-5 border-b border-t-8 ${card.border} ${card.bg}">
-                        <h2 class="text-lg font-bold text-slate-800 leading-tight">${card.title}</h2>
+                        <h2 class="text-base font-bold text-slate-900 leading-tight">${card.title}</h2>
                     </div>
                     <div class="p-5 space-y-5">
-                        <p class="text-xs text-slate-500 leading-relaxed bg-slate-50/80 p-3 rounded-xl border-l-2 border-slate-300 font-medium">
+                        <p class="text-xs text-slate-500 leading-relaxed bg-slate-50/80 p-3.5 rounded-xl border-l-2 border-slate-300 font-medium">
                             ${card.desc}
                         </p>
-                        <div class="space-y-4 pt-2">
+                        <div class="space-y-4 pt-2 border-b border-slate-100 pb-5">
                             <div class="flex items-start">
-                                <span class="text-slate-400 font-bold text-sm mr-2.5">Q1.</span>
-                                <p class="text-xs text-slate-700 leading-relaxed pt-0.5">${card.q1}</p>
+                                <span class="text-slate-400 font-medium text-xs mr-3 pt-0.5">01</span>
+                                <p class="text-xs text-slate-700 leading-relaxed font-light">${card.q1}</p>
                             </div>
                             <div class="flex items-start">
-                                <span class="text-slate-400 font-bold text-sm mr-2.5">Q2.</span>
-                                <p class="text-xs text-slate-700 leading-relaxed pt-0.5">${card.q2}</p>
+                                <span class="text-slate-400 font-medium text-xs mr-3 pt-0.5">02</span>
+                                <p class="text-xs text-slate-700 leading-relaxed font-light">${card.q2}</p>
                             </div>
                         </div>
-                        <div class="mt-4 p-4 rounded-xl border border-dashed ${card.border.replace('border-', 'border-')} bg-white shadow-inner">
-                            <p class="text-xs font-bold text-slate-900 mb-1 flex items-center">
-                                <span class="inline-block w-1.5 h-3 bg-slate-800 mr-2 rounded-full"></span>
-                                필수 기록 미션
+                        <div class="pt-1">
+                            <p class="text-[11px] font-bold text-slate-900 mb-1.5 flex items-center tracking-wider">
+                                <span class="inline-block w-1 h-2.5 bg-slate-700 mr-2 rounded-full"></span>
+                                대화를 여는 이야기
                             </p>
-                            <p class="text-xs font-bold text-slate-800 leading-relaxed">${card.m}</p>
+                            <p class="text-xs text-slate-600 leading-relaxed font-light">${card.q3}</p>
                         </div>
                     </div>
                 </div>
             `;
 
-            // 화면 전환
             document.getElementById('step-question').classList.add('hidden');
             const stepCard = document.getElementById('step-card');
             stepCard.classList.remove('hidden');
